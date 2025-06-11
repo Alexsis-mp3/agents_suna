@@ -78,12 +78,12 @@ jobs:
 
       - name: Build and push backend Docker image
         run: |
-          docker build -t $BACKEND_IMAGE ./suna/backend
+          docker build -t $BACKEND_IMAGE ./backend
           docker push $BACKEND_IMAGE
 
       - name: Build and push frontend Docker image
         run: |
-          docker build -t $FRONTEND_IMAGE ./suna/frontend
+          docker build -t $FRONTEND_IMAGE ./frontend
           docker push $FRONTEND_IMAGE
 
       - name: Deploy backend to Cloud Run
@@ -93,7 +93,7 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
-            --set-env-vars $(cat ./suna/backend/.env | grep -v '^#' | xargs)
+            --set-env-vars $(cat ./backend/.env | grep -v '^#' | xargs)
 
       - name: Deploy frontend to Cloud Run
         run: |
@@ -102,7 +102,7 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
-            --set-env-vars $(cat ./suna/frontend/.env.local | grep -v '^#' | xargs)
+            --set-env-vars $(cat ./frontend/.env.local | grep -v '^#' | xargs)
 
 # Required GitHub Secrets:
 # - GCP_PROJECT_ID: Your Google Cloud project ID

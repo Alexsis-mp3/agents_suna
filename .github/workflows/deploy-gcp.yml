@@ -93,7 +93,7 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
-            --set-env-vars $(cat ./backend/.env | grep -v '^#' | xargs)
+            --set-env-vars $(grep -v '^#' ./backend/.env | paste -sd ',' -)
 
       - name: Deploy frontend to Cloud Run
         run: |
@@ -102,7 +102,7 @@ jobs:
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
-            --set-env-vars $(cat ./frontend/.env.local | grep -v '^#' | xargs)
+            --set-env-vars $(grep -v '^#' ./frontend/.env.local | paste -sd ',' -)
 
 # Required GitHub Secrets:
 # - GCP_PROJECT_ID: Your Google Cloud project ID

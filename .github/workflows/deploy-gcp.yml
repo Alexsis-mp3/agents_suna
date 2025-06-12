@@ -70,7 +70,7 @@ jobs:
           FIRECRAWL_URL=
           DAYTONA_API_KEY=${{ secrets.DAYTONA_API_KEY }}
           DAYTONA_SERVER_URL=
-          DAYTONA_TARGET=
+          DAYTONA_TARGET=us
           LANGFUSE_PUBLIC_KEY=${{ secrets.LANGFUSE_PUBLIC_KEY }}
           LANGFUSE_SECRET_KEY=${{ secrets.LANGFUSE_SECRET_KEY }}
           LANGFUSE_HOST=${{ secrets.LANGFUSE_HOST }}

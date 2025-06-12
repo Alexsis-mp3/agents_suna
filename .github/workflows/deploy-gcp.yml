@@ -40,6 +40,9 @@ jobs:
       - name: Configure Docker for GCR
         run: gcloud auth configure-docker
 
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
       - name: Create backend .env file from secrets
         run: |
           cat <<EOF > ./backend/.env

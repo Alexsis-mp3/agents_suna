@@ -179,9 +179,15 @@ Example configuration:
 ```sh
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+# Backend listens on port 8000 by default. Cloud Run sets $PORT to 8080
 NEXT_PUBLIC_BACKEND_URL=http://backend:8000/api
 NEXT_PUBLIC_URL=http://localhost:3000
 ```
+
+On Google Cloud Run the container is automatically provided a `PORT` environment
+variable (default `8080`). The backend Dockerfile now respects this variable, so
+no change is required beyond setting `NEXT_PUBLIC_BACKEND_URL` to the public
+address of your backend.
 
 ## Post-Installation Steps
 

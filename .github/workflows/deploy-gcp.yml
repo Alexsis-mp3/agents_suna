@@ -23,6 +23,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set lowercase repository name
+        id: repo
+        run: echo "REPO_NAME_LC=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
@@ -80,18 +84,18 @@ jobs:
 
       - name: Build and push backend Docker image
         run: |
-          docker build -t $BACKEND_IMAGE ./backend
-          docker push $BACKEND_IMAGE
+          docker build -t ghcr.io/${{ env.REPO_NAME_LC }}/suna-backend:latest ./backend
+          docker push ghcr.io/${{ env.REPO_NAME_LC }}/suna-backend:latest
 
       - name: Build and push frontend Docker image
         run: |
-          docker build -t $FRONTEND_IMAGE ./frontend
-          docker push $FRONTEND_IMAGE
+          docker build -t ghcr.io/${{ env.REPO_NAME_LC }}/suna-frontend:latest ./frontend
+          docker push ghcr.io/${{ env.REPO_NAME_LC }}/suna-frontend:latest
 
       - name: Deploy backend to Cloud Run
         run: |
           gcloud run deploy $BACKEND_SERVICE \
-            --image $BACKEND_IMAGE \
+            --image ghcr.io/${{ env.REPO_NAME_LC }}/suna-backend:latest \
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \
@@ -100,7 +104,7 @@ jobs:
       - name: Deploy frontend to Cloud Run
         run: |
           gcloud run deploy $FRONTEND_SERVICE \
-            --image $FRONTEND_IMAGE \
+            --image ghcr.io/${{ env.REPO_NAME_LC }}/suna-frontend:latest \
             --platform managed \
             --region $REGION \
             --allow-unauthenticated \

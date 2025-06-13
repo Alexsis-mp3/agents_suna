@@ -143,6 +143,15 @@ We welcome contributions from the community! Please see our [Contributing Guide]
 ## License
 
 Kortix Suna is licensed under the Apache License, Version 2.0. See [LICENSE](./LICENSE) for the full license text.
- 
-  
+
+## Update (Cloud Run Deployment)
+
+- The backend deployment workflow now hardcodes `DAYTONA_TARGET=us` in the generated `.env` file to ensure compatibility with DaytonaConfig validation on Cloud Run.
+- This prevents startup errors related to missing or invalid `DAYTONA_TARGET` values.
+
+---
+
+ 
+ 
+ 
  

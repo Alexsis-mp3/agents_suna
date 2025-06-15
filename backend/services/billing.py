@@ -18,7 +18,7 @@ from utils.constants import MODEL_ACCESS_TIERS, MODEL_NAME_ALIASES
 stripe.api_key = config.STRIPE_SECRET_KEY
 
 # Initialize router
-router = APIRouter(prefix="/billing", tags=["billing"])
+router = APIRouter(tags=["billing"])
 
 
 SUBSCRIPTION_TIERS = {

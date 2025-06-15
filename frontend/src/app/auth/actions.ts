@@ -56,11 +56,11 @@ export async function signIn(prevState: any, formData: FormData) {
 }
 
 export async function signUp(prevState: any, formData: FormData) {
-  const origin = formData.get('origin') as string;
+  const origin = (formData.get('origin') as string)?.trim();
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
   const confirmPassword = formData.get('confirmPassword') as string;
-  const returnUrl = formData.get('returnUrl') as string | undefined;
+  const returnUrl = (formData.get('returnUrl') as string | undefined)?.trim();
 
   if (!email || !email.includes('@')) {
     return { message: 'Please enter a valid email address' };
@@ -80,7 +80,7 @@ export async function signUp(prevState: any, formData: FormData) {
     email,
     password,
     options: {
-      emailRedirectTo: `${origin}/auth/callback?returnUrl=${returnUrl}`,
+      emailRedirectTo: `${origin}/auth/callback?returnUrl=${encodeURIComponent(returnUrl || '')}`,
     },
   });
 

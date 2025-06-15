@@ -13,6 +13,7 @@ from utils.logger import logger
 import time
 from collections import OrderedDict
 from typing import Dict, Any
+import os
 
 from pydantic import BaseModel
 # Import the agent API module
@@ -110,7 +111,14 @@ async def log_requests_middleware(request: Request, call_next):
         raise
 
 # Define allowed origins based on environment
-allowed_origins = ["https://www.suna.so", "https://suna.so", "http://localhost:3000"]
+allowed_origins = [
+    "https://www.suna.so",
+    "https://suna.so",
+    "http://localhost:3000"
+]
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    allowed_origins.append(frontend_url)
 allow_origin_regex = None
 
 # Add staging-specific origins

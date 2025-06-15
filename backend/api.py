@@ -161,6 +161,11 @@ async def health_check():
         "instance_id": instance_id
     }
 
+@app.get("/health")
+async def root_health_check():
+    """Root health check endpoint for compatibility."""
+    return await health_check()
+
 class CustomMCPDiscoverRequest(BaseModel):
     type: str
     config: Dict[str, Any]

@@ -1698,7 +1698,7 @@ export const getSubscription = async (): Promise<SubscriptionStatus> => {
       throw new NoAccessTokenAvailableError();
     }
 
-    const response = await fetch(`${API_URL}/billing/subscription`, {
+    const response = await fetch(`${API_URL}/api/billing/subscription`, {
       headers: {
         Authorization: `Bearer ${session.access_token}`,
       },

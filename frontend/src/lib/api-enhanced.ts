@@ -375,7 +375,7 @@ export const agentApi = {
 export const billingApi = {
   async getSubscription(): Promise<SubscriptionStatus | null> {
     const result = await backendApi.get(
-      '/billing/subscription',
+      '/api/billing/subscription',
       {
         errorContext: { operation: 'load subscription', resource: 'billing information' },
       }
@@ -386,7 +386,7 @@ export const billingApi = {
 
   async checkStatus(): Promise<BillingStatusResponse | null> {
     const result = await backendApi.get(
-      '/billing/status',
+      '/api/billing/status',
       {
         errorContext: { operation: 'check billing status', resource: 'account status' },
       }
@@ -397,7 +397,7 @@ export const billingApi = {
 
   async createCheckoutSession(request: CreateCheckoutSessionRequest): Promise<CreateCheckoutSessionResponse | null> {
     const result = await backendApi.post(
-      '/billing/create-checkout-session',
+      '/api/billing/create-checkout-session',
       request,
       {
         errorContext: { operation: 'create checkout session', resource: 'billing' },
@@ -409,7 +409,7 @@ export const billingApi = {
 
   async createPortalSession(request: CreatePortalSessionRequest): Promise<{ url: string } | null> {
     const result = await backendApi.post(
-      '/billing/create-portal-session',
+      '/api/billing/create-portal-session',
       request,
       {
         errorContext: { operation: 'create portal session', resource: 'billing portal' },
@@ -421,7 +421,7 @@ export const billingApi = {
 
   async getAvailableModels(): Promise<AvailableModelsResponse | null> {
     const result = await backendApi.get(
-      '/billing/available-models',
+      '/api/billing/available-models',
       {
         errorContext: { operation: 'load available models', resource: 'AI models' },
       }

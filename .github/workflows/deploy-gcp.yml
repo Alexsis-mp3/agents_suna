@@ -75,6 +75,7 @@ jobs:
           LANGFUSE_SECRET_KEY=${{ secrets.LANGFUSE_SECRET_KEY }}
           LANGFUSE_HOST=${{ secrets.LANGFUSE_HOST }}
           SMITHERY_API_KEY=${{ secrets.SMITHERY_API_KEY }}
+          FRONTEND_URL=${{ secrets.FRONTEND_URL }}
           EOF
 
       - name: Create frontend .env.local file from secrets
